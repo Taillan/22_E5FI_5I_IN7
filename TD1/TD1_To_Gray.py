@@ -23,9 +23,19 @@ if not (args.image or args.video or args.webcam):
 	print("You need to chose an input : --help")
 	exit()
 
+# def img_to_gray(image):
+# 	image_gray = [pixels[0]*0.2989 + pixels[1]*0.5870 + pixels[2]* 0.1140 for pixels in image]
+# 	print(image_gray)
+
+
 def img_to_gray(image):
-	image_gray = [pixels[0]*0.2989 + pixels[1]*0.5870 + pixels[2]* 0.1140 for pixels in image]
-	print(image_gray)
+	for row in image:
+		for coll in row:
+			gray_collor = coll[0]*0.2989 + coll[1]*0.5870 + coll[2]* 0.1140
+			coll[0]=gray_collor
+			coll[1]=gray_collor
+			coll[2]=gray_collor
+	print(image)
 
 if args.image:
 	
