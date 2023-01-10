@@ -24,22 +24,29 @@ if not (args.image or args.video or args.webcam):
 	exit()
 
 def img_to_gray_multiplication(image):
-	for row in image:
-		for coll in row:
-			gray_collor = coll[0]*0.2989 + coll[1]*0.5870 + coll[2]* 0.1140
-			coll[0]=gray_collor
-			coll[1]=gray_collor
-			coll[2]=gray_collor
+	"""
+	This function take an image in input and convert it in gray color using multiplication factor:
+	Red : * 0.2989
+	Blue : * 0.5870
+	Green : * 0.1140
+	"""
+	b, g, r = image[:,:,0], image[:,:,1], image[:,:,2]
+	gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
+	image[:,:,0] = gray
+	image[:,:,1] = gray
+	image[:,:,2] = gray
 	return image
 
 def img_to_gray_function(image):
+	"""
+	This function take an image in input and convert it in gray color using opencv color/ function
+	"""
 	return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
 
 if args.image:
 	
-	# LOAD AN IMAGE USING 'IMREAD'
 	img = cv2.imread(args.image)
-	# DISPLAY
 	cv2.imshow("Gray multiplication",img_to_gray_multiplication(img))
 	cv2.imshow("Gray color function",img_to_gray_function(img))
 
