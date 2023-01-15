@@ -115,13 +115,24 @@ if args.image:
 	
 	img = cv2.imread(args.image)
 
-	cv2.imshow("Manual blur filter",blur_filter(img_to_gray_multiplication(img)))
-	cv2.imshow("Opencv blur filter",blur_filter_opencv(img_to_gray_function(img)))
+	manual_blur_filter = blur_filter(img_to_gray_multiplication(img))
+	cv2.imshow("Manual blur filter", manual_blur_filter)
+	cv2.imwrite('manual_blur_filter.jpg', manual_blur_filter) 
 
-	cv2.imshow("Manual sobel filter",sobel_filter(img_to_gray_multiplication(img)))
-	cv2.imshow("Opencv sobel filter",sobel_filter_opencv(img_to_gray_function(img)))
+	opencv_blur_filter = blur_filter_opencv(img_to_gray_function(img))
+	cv2.imshow("Opencv blur filter", opencv_blur_filter)
+	cv2.imwrite('opencv_blur_filter.jpg', opencv_blur_filter)
+
+	manual_sobel_filter = sobel_filter(img_to_gray_multiplication(img))
+	cv2.imshow("Manual sobel filter", manual_sobel_filter)
+	cv2.imwrite('manual_sobel_filter.jpg', manual_sobel_filter)
+
+	opencv_sobel_filter = sobel_filter_opencv(img_to_gray_function(img))
+	cv2.imshow("Opencv sobel filter", opencv_sobel_filter)
+	cv2.imwrite('opencv_sobel_filter.jpg', opencv_sobel_filter)
 
 	cv2.waitKey(0)
+
 
 	cv2.destroyWindow("Manual blur filter")
 	cv2.destroyWindow("Opencv blur filter")
